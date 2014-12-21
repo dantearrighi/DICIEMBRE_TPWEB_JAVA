@@ -120,12 +120,12 @@ String usu= (String)session.getAttribute("usuario");
             <div id="myCarousel" class="carousel slide">
   				<div class="carousel-inner">
     				<div class="item active">
-    					<img src="img/03.jpg" height="450" width="980">
+    					<img src="" height="450" width="980">
     				</div>
-    				<div class="item"><img src="img/04.jpg" height="450" width="980"></div>
-   					 <div class="item"><img src="img/05.jpg" height="450" width="980"></div>
-   					 <div class="item"><img src="img/06.jpg" height="450" width="980"></div>
-   					 <div class="item"><img src="img/08.jpg" height="450" width="980"></div>
+    				<div class="item"><img src="" height="450" width="980"></div>
+   					 <div class="item"><img src="" height="450" width="980"></div>
+   					 <div class="item"><img src="" height="450" width="980"></div>
+   					 <div class="item"><img src="" height="450" width="980"></div>
   				</div>
   <!-- Carousel nav -->
   				<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
