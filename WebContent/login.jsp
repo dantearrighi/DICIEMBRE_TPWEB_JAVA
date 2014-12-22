@@ -88,7 +88,7 @@
         }
 
         if (datos.password.value == "") {
-            falta += "Falta ingresar pass \n";
+            falta += "Falta ingresar Password \n";
             fallo = true;
         }
 
