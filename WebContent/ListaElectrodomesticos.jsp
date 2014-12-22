@@ -90,7 +90,7 @@ else {
         <div  class="well nav-collapse sidebar-nav">
           <ul id="pruebita" class="nav nav-tabs nav-stacked main-menu">
             <li class="nav-header hidden-tablet">Menu Principal</li>
-            <li><a href="addElectro.jsp"><i class="icon-file"></i> Cargar Electrodomestico</a>           
+            <li><a href="AltaElectrodomestico.jsp"><i class="icon-file"></i> Alta Electrodomestico</a>           
             </li>
             <li><a class="ajax-link"><i class="icon-list-alt"></i><span class="hidden-tablet"> Listado Electrodomestico</span></a>
             <ul>
