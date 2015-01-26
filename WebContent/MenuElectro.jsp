@@ -80,7 +80,7 @@ String usu= (String)session.getAttribute("usuario");
                 <li><a class="ajax-link" href="bajas.jsp">Bajas</a></li>
               </ul>
             </li>
-            <li><a class="ajax-link" href="addElectro.jsp"><i class="icon-file"></i><span class="hidden-tablet"> Agregar electro</span></a></li>
+            <li><a class="ajax-link" href="ListaLavarropas.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet"> Lista de Lavarropas</span></a></li>
             <li><a class="ajax-link" href="CargaTP.jsp"><i class="icon-file"></i><span class="hidden-tablet"> ITEM MENU2</span></a></li>
             <li><a class="ajax-link" href="ModificarAlu.jsp"><i class="icon-pencil"></i><span class="hidden-tablet"> ITEM MENU3</span></a>
             </li>

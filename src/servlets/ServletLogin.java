@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import negocio.ControladorElectrodomesticoNegocio;
+import negocio.ControladorLavarropasNegocio;
+import negocio.ControladorTelevisorNegocio;
 import negocio.ControladorUsuario;
 import negocio.Usuario;
 
@@ -44,6 +46,9 @@ public class ServletLogin extends HttpServlet {
 		// TODO Auto-generated method stub
 		ControladorUsuario controladorUsuario = new ControladorUsuario();
 		ControladorElectrodomesticoNegocio controladorElectro= new ControladorElectrodomesticoNegocio();
+		ControladorLavarropasNegocio controladorLavarropas = new ControladorLavarropasNegocio();
+		ControladorTelevisorNegocio controladorTelevisor = new ControladorTelevisorNegocio();
+		
 		
 		Usuario vUsuario;
 		HttpSession session= request.getSession(true);
@@ -59,7 +64,9 @@ public class ServletLogin extends HttpServlet {
 	    {
 	    	session.setAttribute("usuario",vUsername);
 	    	session.setAttribute("controladorUsuario",controladorUsuario);
-	    	session.setAttribute("controladorElectro",controladorElectro);
+	    	session.setAttribute("controladorLavarropas",controladorLavarropas);
+	      	session.setAttribute("controladorElectro",controladorElectro);
+	      	session.setAttribute("controladorTelevisor",controladorTelevisor);
 	    	session.setAttribute("pass", vPassword);
 	    	request.getRequestDispatcher("/MenuElectro.jsp").forward(request, response);
 	    }
