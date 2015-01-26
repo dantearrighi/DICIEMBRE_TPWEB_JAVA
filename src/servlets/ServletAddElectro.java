@@ -14,7 +14,7 @@ import negocio.ControladorElectrodomesticoNegocio;
 /**
  * Servlet implementation class ServletModAluPers
  */
-@WebServlet("/ServletModAluPers")
+@WebServlet("/ServletAddElectro")
 public class ServletAddElectro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -22,7 +22,7 @@ public class ServletAddElectro extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public ServletAddElectro() {
-        super();
+        
         // TODO Auto-generated constructor stub
     }
 
@@ -41,18 +41,18 @@ public class ServletAddElectro extends HttpServlet {
 		ControladorElectrodomesticoNegocio controladorElectro =(ControladorElectrodomesticoNegocio)session.getAttribute("controladorElectro");
 		
 		char pConsumo = request.getParameter("consumo").charAt(0); //Selecciono el primer caracter de la cadena (ademas, el unico)
-		String pColor =request.getParameter("color");
+		String pColor =request.getParameter("color").toUpperCase();
 		String pDescripcion =request.getParameter("descripcion");
 		int pPeso =Integer.parseInt(request.getParameter("peso"));
 		float pPrecio =Float.parseFloat(request.getParameter("precio"));
 		
 		try{
 		controladorElectro.AddElectro(pPrecio, pPeso, pColor, pConsumo, pDescripcion);
-		response.sendRedirect("/ListaElectrodomesticos.jsp");
+		response.sendRedirect("/JAVA_TPWEB/ListaElectrodomesticos.jsp");
 		}
 		catch(Exception e)
 		{
-			response.sendRedirect("/ErrorModificacion.html");
+			response.sendRedirect("/ErrorAlta.html"); //No está creada esta vista.
 		}
 		// TODO Auto-generated method stub
 	}

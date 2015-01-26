@@ -109,7 +109,7 @@ else {
             </div>
           </div>
           <div class="box-content">
-           <form name="datos" class="form-horizontal" action="/ServletAddElectro" method="post" onsubmit="return validar();">
+           <form name="datos" class="form-horizontal" action="ServletAddElectro" method="post" onsubmit="return validar();">
               <div class="control-group">
 								<label class="control-label" for="consumo">Consumo energético</label>
 								<div class="controls">

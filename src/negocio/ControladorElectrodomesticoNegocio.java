@@ -3,7 +3,6 @@ package negocio;
 import java.util.ArrayList;
 
 import datos.CatalogoElectrodomestico;
-import datos.CatalogoLavarropas;
 import models.Electrodomestico;
 
 
