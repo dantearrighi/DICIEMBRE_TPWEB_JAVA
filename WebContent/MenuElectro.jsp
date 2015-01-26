@@ -73,14 +73,14 @@ String usu= (String)session.getAttribute("usuario");
           <ul id="pruebita" class="nav nav-tabs nav-stacked main-menu">
             <li class="nav-header hidden-tablet">Menu Principal</li>
             
-            <li><a class="ajax-link"><i class="icon-list-alt"></i><span class="hidden-tablet"> Electrodomesticos</span></a>
+            <li><a class="ajax-link"><i class="icon-list-alt"></i><span class="hidden-tablet">Listas</span></a>
             <ul>
-                <li><a class="ajax-link" href="ListaElectrodomesticos.jsp">Lista de Electrodomesticos</a></li>
-                <li><a class="ajax-link" href="altas.jsp">Altas</a></li>
-                <li><a class="ajax-link" href="bajas.jsp">Bajas</a></li>
+                <li><a class="ajax-link" href="ListaElectrodomesticos.jsp">Electrodomesticos</a></li>
+                <li><a class="ajax-link" href="ListaLavarropas.jsp">Lavarropas</a></li>
+                <li><a class="ajax-link" href="ListaTelevisores.jsp">Televisores</a></li>
               </ul>
             </li>
-            <li><a class="ajax-link" href="ListaLavarropas.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet"> Lista de Lavarropas</span></a></li>
+            <li><a class="ajax-link" href="ListaLavarropas.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet"> LIST ITEM</span></a></li>
             <li><a class="ajax-link" href="CargaTP.jsp"><i class="icon-file"></i><span class="hidden-tablet"> ITEM MENU2</span></a></li>
             <li><a class="ajax-link" href="ModificarAlu.jsp"><i class="icon-pencil"></i><span class="hidden-tablet"> ITEM MENU3</span></a>
             </li>

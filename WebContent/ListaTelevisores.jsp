@@ -1,6 +1,6 @@
-<%@page import="negocio.ControladorElectrodomesticoNegocio"%>
-<%@page import="datos.CatalogoElectrodomestico"%>
-<%@page import="models.Electrodomestico"%>
+<%@page import="negocio.ControladorTelevisorNegocio"%>
+<%@page import="datos.CatalogoTelevisor"%>
+<%@page import="models.Televisor"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SGE - Listado de electrodomésticos</title>
+    <title>SGE - Listado de Televisores</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-slate.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.css">
@@ -43,11 +43,11 @@
 	response.sendRedirect("login.jsp");
 else {
 	String usu= (String)session.getAttribute("usuario");
-	ArrayList <Electrodomestico> vListaElectro;
-    ControladorElectrodomesticoNegocio controladorElectro = (ControladorElectrodomesticoNegocio)session.getAttribute("controladorElectro");
+	ArrayList <Televisor> vListaTelevisores;
+    ControladorTelevisorNegocio controladorTelevisor = (ControladorTelevisorNegocio)session.getAttribute("controladorTelevisor");
    
-    vListaElectro = controladorElectro.GetAllEl();
-%>
+    vListaTelevisores = controladorTelevisor.GetAllTe();
+    %>
 <div class="navbar">
     <div class="navbar-inner">
       <div class="container-fluid">
@@ -90,9 +90,9 @@ else {
         <div  class="well nav-collapse sidebar-nav">
           <ul id="pruebita" class="nav nav-tabs nav-stacked main-menu">
             <li class="nav-header hidden-tablet">Menu Principal</li>
-            <li><a href="AltaElectrodomestico.jsp"><i class="icon-file"></i> Alta Electrodomestico</a>           
+            <li><a href="AltaElectrodomestico.jsp"><i class="icon-file"></i> Alta Televisor</a>           
             </li>
-            <li><a class="ajax-link"><i class="icon-list-alt"></i><span class="hidden-tablet"> Listado Electrodomestico</span></a>
+            <li><a class="ajax-link"><i class="icon-list-alt"></i><span class="hidden-tablet"> Listado de Televisores</span></a>
             <ul>
                 <li><a class="ajax-link" href="">SUBITEM1</a></li>
                 <li><a class="ajax-link" href="">SUBITEM2</a></li>
@@ -105,12 +105,7 @@ else {
             <li><a class="ajax-link" href=""><i class="icon-pencil"></i><span class="hidden-tablet"> SUBITEM3</span></a>
             </li>
             <li><a class="ajax-link" href=""><i class="icon-refresh"></i><span class="hidden-tablet"> Modificar Datos</span></a></li>
-            <li><a class="ajax-link"><i class="icon-remove"></i><span class="hidden-tablet"> Dar de baja</span></a>
-            <ul>
-                <li><a class="ajax-link" href="">Electro</a></li>
-                <li><a class="ajax-link" href=""></a></li>
-              </ul>
-            </li>
+            <li><a class="ajax-link" href=""><i class="icon-remove"></i><span class="hidden-tablet"> Dar de baja</span></a></li>
           </ul>
         </div><!--/.well -->
       </div><!--/span-->
@@ -120,7 +115,7 @@ else {
       <div class="row-fluid sortable">
         <div class="box span12">
           <div class="box-header well" data-original-title>
-            <h2 style=width:300px><i class="icon-edit" ></i> Listado de Electrodomesticos</h2>
+            <h2 style=width:300px><i class="icon-edit" ></i> Listado de Televisores</h2>
             <div class="box-icon">
               <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
               <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
@@ -149,6 +144,12 @@ else {
                        Consumo
                       </th>
                       <th>
+                       Resolución
+                      </th>
+                       <th>
+                       Sintoniz
+                      </th>
+                       <th>
                        Precio
                       </th>
                      
@@ -159,25 +160,31 @@ else {
 
                   </thead>
                   <tbody>
-                  <%for(int i=0; i<vListaElectro.size();i++){ %>
+                  <%for(int i=0; i<vListaTelevisores.size();i++){ %>
                     <tr>
                       <td>
-                 		<%=vListaElectro.get(i).getIdElect()%>
+                 		<%=vListaTelevisores.get(i).getIdElect()%>
                       </td>
                        <td>
-                        <%=vListaElectro.get(i).getDescripcion() %>
+                        <%=vListaTelevisores.get(i).getDescripcion() %>
                       </td>
                        <td>
-                        <%=vListaElectro.get(i).getColor() %>
+                        <%=vListaTelevisores.get(i).getColor() %>
                       </td>
                         <td>
-						<%=vListaElectro.get(i).getPeso() %>
+						<%=vListaTelevisores.get(i).getPeso() %>
                       </td>
                       <td>
-						<%=vListaElectro.get(i).getConsumoEnergetico() %>
+						<%=vListaTelevisores.get(i).getConsumoEnergetico() %>
                       </td>
                          <td>
-						<%=vListaElectro.get(i).getPreciobase()%>
+						<%=vListaTelevisores.get(i).getPulgadas()%>
+                      </td>
+                       <td>
+						<%=vListaTelevisores.get(i).isSintonizadorTDT()%>
+                      </td>
+                       <td>
+						<%=vListaTelevisores.get(i).getPreciobase()%>
                       </td>
 
                     </tr>

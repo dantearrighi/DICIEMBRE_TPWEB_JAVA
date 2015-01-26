@@ -92,7 +92,7 @@ else {
             <li class="nav-header hidden-tablet">Menu Principal</li>
             <li><a href="AltaElectrodomestico.jsp"><i class="icon-file"></i> Alta Electrodomestico</a>           
             </li>
-            <li><a class="ajax-link"><i class="icon-list-alt"></i><span class="hidden-tablet"> Listado Electrodomestico</span></a>
+            <li><a class="ajax-link"><i class="icon-list-alt"></i><span class="hidden-tablet"> Listado ITEMS</span></a>
             <ul>
                 <li><a class="ajax-link" href="">SUBITEM1</a></li>
                 <li><a class="ajax-link" href="">SUBITEM2</a></li>
@@ -105,12 +105,8 @@ else {
             <li><a class="ajax-link" href=""><i class="icon-pencil"></i><span class="hidden-tablet"> SUBITEM3</span></a>
             </li>
             <li><a class="ajax-link" href=""><i class="icon-refresh"></i><span class="hidden-tablet"> Modificar Datos</span></a></li>
-            <li><a class="ajax-link"><i class="icon-remove"></i><span class="hidden-tablet"> Dar de baja</span></a>
-            <ul>
-                <li><a class="ajax-link" href="">Electro</a></li>
-                <li><a class="ajax-link" href=""></a></li>
-              </ul>
-            </li>
+            <li><a class="ajax-link" href=""><i class="icon-remove"></i><span class="hidden-tablet"> Dar de baja</span></a></li>
+           
           </ul>
         </div><!--/.well -->
       </div><!--/span-->

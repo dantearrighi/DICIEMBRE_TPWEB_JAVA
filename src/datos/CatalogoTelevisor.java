@@ -102,7 +102,7 @@ public class CatalogoTelevisor {
 									ElectroDev.setPulgadas(rta.getInt("Resol_tele"));
 									ElectroDev.setSintonizadorTDT(rta.getBoolean("Sintoniz_tele"));
 						ElectroDevArray.add(ElectroDev);
-									rta.next();
+									// rta.next(); el que hizo esto se la mando
 						}
 								
 								} catch (SQLException e) {

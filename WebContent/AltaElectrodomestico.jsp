@@ -1,4 +1,6 @@
-<%@page import="Datos.CatalogoComisiones"%>
+<%@page import="negocio.ControladorElectrodomesticoNegocio"%>
+<%@page import="datos.CatalogoElectrodomestico"%>
+<%@page import="models.Electrodomestico"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
@@ -36,12 +38,12 @@
 if(session.getAttribute("usuario")==null)
 	response.sendRedirect("login.jsp");
 else {
-	ArrayList <negocio.Alumno> alumnos;
-    negocio.Asistencia asistencia=null;
-    negocio.ControladorSGA controlador= (negocio.ControladorSGA)session.getAttribute("controlador");
-    negocio.Comision comi= (negocio.Comision)session.getAttribute("comision");
-    alumnos=controlador.BuscaAlumnos(comi);
-    String usu=(String)session.getAttribute("usuario");
+	String usu= (String)session.getAttribute("usuario");
+	ArrayList <Electrodomestico> vListaElectros;
+	ControladorElectrodomesticoNegocio controladorElectro = (ControladorElectrodomesticoNegocio)session.getAttribute("controladorElectro");
+	   
+    vListaElectros = controladorElectro.GetAllEl();
+  
 %>
 <div class="navbar">
     <div class="navbar-inner">
@@ -87,12 +89,7 @@ else {
           <ul id="pruebita" class="nav nav-tabs nav-stacked main-menu">
             <li class="nav-header hidden-tablet">Menu Principal</li>
            
-            <li><a class="ajax-link"><i class="icon-list-alt"></i><span class="hidden-tablet"> Agregar Electrodoméstico</span></a>
-            </li>
-            <li><a class="ajax-link" href="file:///C|/Users/Admin/Desktop/Java/JavaTP_Web/UNR-WEB/WebContent/CargaParciales.jsp"><i class="icon-edit"></i><span class="hidden-tablet"> Agregar Lavarropas</span></a></li>
-            <li><a class="ajax-link" href="file:///C|/Users/Admin/Desktop/Java/JavaTP_Web/UNR-WEB/WebContent/CargaTP.jsp"><i class="icon-file"></i><span class="hidden-tablet"> Agregar Televisor</span></a></li>
-            <li><a class="ajax-link" href="file:///C|/Users/Admin/Desktop/Java/JavaTP_Web/UNR-WEB/WebContent/ModificarAlu.jsp"><i class="icon-pencil"></i><span class="hidden-tablet"> Volver al listado</span></a>
-            </li>
+            <li><a class="ajax-link" href="ListaElectrodomesticos.jsp"><i class="icon-remove"></i><span class="hidden-tablet"> Cancelar</span></a></li>
             
           
           </ul>
@@ -112,7 +109,7 @@ else {
             </div>
           </div>
           <div class="box-content">
-           <form name="datos" class="form-horizontal" action="/ServletCargaParcial" method="post" onsubmit="return validar();">
+           <form name="datos" class="form-horizontal" action="/ServletAddElectro" method="post" onsubmit="return validar();">
               <div class="control-group">
 								<label class="control-label" for="consumo">Consumo energético</label>
 								<div class="controls">
@@ -149,7 +146,7 @@ else {
                                  <label class="control-label" for="descripcion">Descripción</label>
                                  <div class="controls">
                                    <p>
-                                     <input autofocus class="input-large span6" type="text" id="descripción" name"descripcion">		  
+                                     <input autofocus class="input-large span6" type="text" id="descripción" name="descripcion">		  
                                    </p>
                                    <p>&nbsp;</p>
                                  </div>
@@ -160,7 +157,7 @@ else {
                                  <label class="control-label" for="peso">Peso</label>
                                  <div class="controls">
                                    <p>
-                                     <input autofocus class="input-large span2" type="text" id="peso" name"peso">		  
+                                     <input autofocus class="input-large span2" type="text" id="peso" name="peso">		  
                                    </p>
                                    <p>&nbsp;</p>
                                  </div>
@@ -171,7 +168,7 @@ else {
                                 <div> 
                                  <label class="control-label" for="precio">Precio</label>
                                  <div class="controls">
-                                 <input autofocus class="input-large span2" type="text" id="precio" name"precio">		  
+                                 <input autofocus class="input-large span2" type="text" id="precio" name="precio">		  
               					</div>
                                 
                                 </div>
