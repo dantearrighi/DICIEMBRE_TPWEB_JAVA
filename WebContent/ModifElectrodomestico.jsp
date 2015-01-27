@@ -1,6 +1,5 @@
-<%@page import="negocio.Alumno"%>
-<%@page import="negocio.Docente"%>
-<%@page import="negocio.ControladorSGA"%>
+<%@page import="negocio.ControladorElectrodomesticoNegocio"%>
+<%@page import="models.Electrodomestico"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
@@ -8,7 +7,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Modificacion Datos Personales Alumno</title>
+  <title>Modificar datos - Electrodomesticos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="css/bootstrap-slate.css">
   <link rel="stylesheet" href="css/bootstrap-responsive.css">
@@ -25,13 +24,15 @@
 </head>
 <body>
 <%
-if(session.getAttribute("usuario")==null){ 
+if(session.getAttribute("usuario")==null)
+{ 
 	response.sendRedirect("login.jsp");
 	
 	} 
 else {
 String usu= (String)session.getAttribute("usuario");
-Alumno alumno=(Alumno)request.getAttribute("alumno");
+Electrodomestico electro=(Electrodomestico)request.getAttribute("electroSelect");
+ControladorElectrodomesticoNegocio controladorElectro = (ControladorElectrodomesticoNegocio)session.getAttribute("controladorElectro");
 %>
  
 <div class="navbar">
@@ -42,9 +43,9 @@ Alumno alumno=(Alumno)request.getAttribute("alumno");
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="index.jsp"> <span>SGA</span></a>
+        <a class="brand" href="index.jsp"> <span>SGE</span></a>
         <div class="mi_barra">
-        	<h3>Sistema de Gestion de Alumnos UNR-ARTE</h3>
+        	<h3>Sistema de Gestion de Electrodomesticos </h3>
         </div>
         
         <!-- theme selector starts -->
@@ -76,27 +77,10 @@ Alumno alumno=(Alumno)request.getAttribute("alumno");
         <div  class="well nav-collapse sidebar-nav">
           <ul id="pruebita" class="nav nav-tabs nav-stacked main-menu">
             <li class="nav-header hidden-tablet">Menu Principal</li>
-            <li><a href="CargaAsistencias.jsp"><i class="icon-font"></i> Cargar Asistencias</a>           
-            </li>
-            <li><a class="ajax-link"><i class="icon-list-alt"></i><span class="hidden-tablet"> Listados</span></a>
-            <ul>
-                <li><a class="ajax-link" href="ListadoDatosAlu.jsp">Datos Alumnos</a></li>
-                <li><a class="ajax-link" href="ListadoAsistencias.jsp">Asistencias</a></li>
-                <li><a class="ajax-link" href="ListadoParciales.jsp">Parciales</a></li>
-                <li><a class="ajax-link" href="ListadoTP.jsp">Trabajos Practicos</a></li>
-              </ul>
-            </li>
-            <li><a class="ajax-link" href="CargaParciales.jsp"><i class="icon-edit"></i><span class="hidden-tablet"> Cargar Notas Parciales</span></a></li>
-            <li><a class="ajax-link" href="CargaTP.jsp"><i class="icon-file"></i><span class="hidden-tablet"> Cargar notas TP</span></a></li>
-            <li><a class="ajax-link" href="ModificarAlu.jsp"><i class="icon-pencil"></i><span class="hidden-tablet"> Modificar Datos Alumnos</span></a>
-            </li>
-            <li><a class="ajax-link" href="ModificarDatosDoc.jsp"><i class="icon-refresh"></i><span class="hidden-tablet"> Modificar Datos Docente</span></a></li>
-            <li><a class="ajax-link"><i class="icon-remove"></i><span class="hidden-tablet"> Dar de baja</span></a>
-            <ul>
-                <li><a class="ajax-link" href="EliminaAlu.jsp">Alumno</a></li>
-                <li><a class="ajax-link" href="EliminarComi.jsp">Curso</a></li>
-              </ul>
-            </li>
+           
+            <li><a class="ajax-link" href="ListaElectrodomesticos.jsp"><i class="icon-remove"></i><span class="hidden-tablet"> Cancelar</span></a></li>
+            
+          
           </ul>
         </div><!--/.well -->
       </div><!--/span-->
@@ -106,7 +90,7 @@ Alumno alumno=(Alumno)request.getAttribute("alumno");
       <div class="row-fluid sortable">
         <div class="box span12">
           <div class="box-header well" data-original-title>
-            <h2><i class="icon-edit"></i> Modificar Datos Personales</h2>
+            <h2><i class="icon-edit"></i> Modificar Datos </h2>
             <div class="box-icon">
               <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
               <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
@@ -114,48 +98,91 @@ Alumno alumno=(Alumno)request.getAttribute("alumno");
             </div>
           </div>
           <div class="box-content">
-            <form name="datos" action="/ServletModAluPers"  class="form-horizontal" method="post" onsubmit="return validar();">
+            <form name="datos" action="ServletModElectro"  class="form-horizontal" method="post" onsubmit="return validar();">
 								<fieldset>
 							 		
+							 		
 							 		<div class="control-group">
-							  			<label class="control-label" for="nombre">Nombre:</label>
+							  			<label class="control-label" for="id">ID:</label>
 							 				 <div class="controls">
-												<input  type="text" id="nombre" name="nombre" maxlength="50" value="<%=alumno.getNombre()%>"/>
+												<input style=" color:black;" type="text" id="id" name="id" maxlength="50" value="<%=electro.getIdElect()%>" readonly/>
 							  				</div>
 									</div>
+									
+							 		
+							 		
+							 		
+							 		<div class="control-group">
+							  			<label class="control-label" for="oldconsumo">Consumo:</label>
+							 				 <div class="controls">
+												<input style=" color:black;" type="text" id="oldconsumo" name="oldconsumo" maxlength="50" value="<%=electro.getConsumoEnergetico()%>" readonly/>
+							  				</div>
+									</div>
+									
+									<label class="control-label" for="consumo">Seleccionar nuevo Consumo energético</label>
+								<div class="controls">
+								  <p>
+								    <select id="consumo" name="consumo">
+								      <option value="A">A</option>
+								      <option value="B">B</option>
+								      <option value="C">C</option>
+								      <option value="D">D</option>
+								      <option value="E">E</option>
+								      <option value="F">F</option>
+							        </select>
+							      </p>
+								  <p>&nbsp;</p>
+								</div>
+									
+									
                                  
                                  	<div class="control-group">
-							  			<label class="control-label" for="apellido">Apellido:</label>
+							  			<label class="control-label" for="oldcolor">Color:</label>
 							 				 <div class="controls">
-												<input  type="text" id="apellido" name="apellido"  maxlength="50" value="<%=alumno.getApellido() %>" />
+												<input style="color:black;" type="text" id="oldcolor" name="oldcolor" maxlength="50" value="<%=electro.getColor()%>" readonly/>
+							  				</div>
+									</div>
+									
+									<label class="control-label" for="color">Seleccione nuevo Color</label>
+								<div class="controls">
+								  <p>
+								    <select id="color" name="color">
+								      <option value="blanco">Blanco</option>
+								      <option value="negro">Negro</option>
+								      <option value="azul">Azul</option>
+								      <option value="rojo">Rojo</option>
+								      <option value="gris">Gris</option>
+								      
+							        </select>
+							      </p>
+								  <p>&nbsp;</p>
+								</div>
+									
+									<div class="control-group">
+							  			<label class="control-label" for="descripcion">Descripcion:</label>
+							 				 <div class="controls">
+												<input style="background-color:white; color:black;" type="text" id="descripcion" name="descripcion" maxlength="50" value="<%=electro.getDescripcion()%>" />
 							  				</div>
 									</div>
 									
 									<div class="control-group">
-							  			<label class="control-label" for="legajo">Legajo:</label>
+							  			<label class="control-label" for="peso">Peso:</label>
 							 				 <div class="controls">
-												<input style="background-color:white; color:black;" type="text" id="legajo" name="legajo" maxlength="50" value="<%=alumno.getLegajo()%>" readonly/>
+												<input type="text" id="peso" name="peso" maxlength="50" value="<%=electro.getPeso()%>"/>
 							  				</div>
 									</div>
 									
 									<div class="control-group">
-							  			<label class="control-label" for="mail">Email:</label>
+							  			<label class="control-label" for="precio">Precio:</label>
 							 				 <div class="controls">
-												<input type="text" id="mail" name="mail" maxlength="50" value="<%=alumno.getMail()%>"/>
-							  				</div>
-									</div>
-									
-									<div class="control-group">
-							  			<label class="control-label" for="obs">Observaciones:</label>
-							 				 <div class="controls">
-												<input type="text" id="obs" name="obs" maxlength="50" value="<%=alumno.getObservacion()%>"/>
+												<input type="text" id="precio" name="precio" maxlength="50" value="<%=electro.getPreciobase()%>"/>
 							  				</div>
 									</div>
                                        
                                        
                                             
                                     <div class="form-actions">
-							  			<button type="submit" class="btn btn-primary">Registrar</button>
+							  			<button type="submit" class="btn btn-primary">Guardar cambios</button>
 										<button type="reset" class="btn">Cancelar</button>
 									</div>
                                         

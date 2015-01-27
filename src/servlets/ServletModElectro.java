@@ -12,16 +12,16 @@ import javax.servlet.http.HttpSession;
 import negocio.ControladorElectrodomesticoNegocio;
 
 /**
- * Servlet implementation class ServletAddElectro
+ * Servlet implementation class ServletModElectro
  */
-@WebServlet("/ServletAddElectro")
-public class ServletAddElectro extends HttpServlet {
+@WebServlet("/ServletModElectro")
+public class ServletModElectro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletAddElectro() {
+    public ServletModElectro() {
         
         // TODO Auto-generated constructor stub
     }
@@ -45,14 +45,15 @@ public class ServletAddElectro extends HttpServlet {
 		String pDescripcion =request.getParameter("descripcion");
 		float pPeso =Float.parseFloat(request.getParameter("peso"));
 		float pPrecio =Float.parseFloat(request.getParameter("precio"));
+		int pID=Integer.parseInt(request.getParameter("id"));
 		
 		try{
-		controladorElectro.AddElectro(pPrecio, pPeso, pColor, pConsumo, pDescripcion);
-		response.sendRedirect("/JAVA_TPWEB/ListaElectrodomesticos.jsp");
+			controladorElectro.UpdateElectro(pID, pPrecio, pPeso, pColor, pConsumo, pDescripcion);
+		response.sendRedirect("/JAVA_TPWEB/ListaElectrodomesticos.jsp"); //Redirigir a MODIFICACION EXITO, NO a la LISTA
 		}
 		catch(Exception e)
 		{
-			response.sendRedirect("/ErrorAlta.html"); //No está creada esta vista1.
+			response.sendRedirect("/ErrorModificacion.html"); //No está creada esta vista 2.
 		}
 		// TODO Auto-generated method stub
 	}
