@@ -45,7 +45,6 @@ else {
 	String usu= (String)session.getAttribute("usuario");
 	ArrayList <Electrodomestico> vListaElectro;
     ControladorElectrodomesticoNegocio controladorElectro = (ControladorElectrodomesticoNegocio)session.getAttribute("controladorElectro");
-   
     vListaElectro = controladorElectro.GetAllEl();
 %>
 <div class="navbar">
@@ -105,7 +104,7 @@ else {
             <li><a class="ajax-link" href=""><i class="icon-pencil"></i><span class="hidden-tablet"> SUBITEM3</span></a>
             </li>
             <li><a class="ajax-link" href="ModificarSelectElectro.jsp"><i class="icon-refresh"></i><span class="hidden-tablet"> Modificar Datos</span></a></li>
-            <li><a class="ajax-link" href=""><i class="icon-remove"></i><span class="hidden-tablet"> Dar de baja</span></a></li>
+            <li><a class="ajax-link" href="BajaSeleccionarElectro.jsp"><i class="icon-remove"></i><span class="hidden-tablet"> Dar de baja</span></a></li>
            
           </ul>
         </div><!--/.well -->

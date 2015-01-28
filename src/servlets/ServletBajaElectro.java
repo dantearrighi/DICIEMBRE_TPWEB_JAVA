@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import negocio.ControladorElectrodomesticoNegocio;
 
 /**
- * Servlet implementation class ServletEliminaAlu
+ * Servlet implementation class ServletBajaElectro
  */
-@WebServlet("/ServletEliminaAlu")
-public class EXAMPLE_ServletEliminaAlu extends HttpServlet {
+@WebServlet("/ServletBajaElectro")
+public class ServletBajaElectro extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EXAMPLE_ServletEliminaAlu() {
-        super();
+    public ServletBajaElectro() {
+      
         // TODO Auto-generated constructor stub
     }
 
@@ -36,23 +37,13 @@ public class EXAMPLE_ServletEliminaAlu extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session=request.getSession();
-		negocio.Alumno alum=null;
-		negocio.ControladorSGA controlador=(negocio.ControladorSGA)session.getAttribute("controlador");
-		negocio.Comision comi=(negocio.Comision)session.getAttribute("comision");
-		String legajo=request.getParameter("radio");
-		ArrayList <negocio.Alumno> alumnos=controlador.BuscaAlumnos(comi);
-		for(int i=0;i<alumnos.size();i++)
-		{
-			if(legajo.equals(alumnos.get(i).getLegajo()))
-			{
-				alum=alumnos.get(i);
-				break;
-			}
-		}
-	
-		controlador.bajaAlumno(comi, alum);
-		response.sendRedirect("/BajaExito.html");
+		
+		ControladorElectrodomesticoNegocio controlador = (ControladorElectrodomesticoNegocio)session.getAttribute("controladorElectro");
+		int vidElectro = Integer.parseInt(request.getParameter("idElectro"));
+		controlador.DeleteElectro(vidElectro);
+		response.sendRedirect("/BajaElectroExito.html");
 		
 		
 		// TODO Auto-generated method stub

@@ -1,4 +1,6 @@
-<%@page import="Datos.CatalogoComisiones"%>
+<%@page import="negocio.ControladorElectrodomesticoNegocio"%>
+<%@page import="datos.CatalogoElectrodomestico"%>
+<%@page import="models.Electrodomestico"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
@@ -7,7 +9,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Eliminar Datos Alumno</title>
+  <title>Eliminar Electro</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link rel="stylesheet" type="text/css" href="css/bootstrap-slate.css">
   <link rel="stylesheet" href="css/bootstrap-responsive.css">
@@ -44,12 +46,11 @@
 if(session.getAttribute("usuario")==null)
 	response.sendRedirect("login.jsp");
 else {
-	ArrayList <negocio.Alumno> alumnos;
-    negocio.Asistencia asistencia=null;
-    negocio.ControladorSGA controlador= (negocio.ControladorSGA)session.getAttribute("controlador");
-    negocio.Comision comi= (negocio.Comision)session.getAttribute("comision");
-    alumnos=controlador.BuscaAlumnos(comi);
-    String usu=(String)session.getAttribute("usuario");
+    String usu= (String)session.getAttribute("usuario");
+	ArrayList <Electrodomestico> vListaElectro;
+    ControladorElectrodomesticoNegocio controlador = (ControladorElectrodomesticoNegocio)session.getAttribute("controladorElectro");
+    vListaElectro = controlador.GetAllEl();
+
 %>
 <div class="navbar">
     <div class="navbar-inner">
@@ -61,7 +62,7 @@ else {
         </a>
         <a class="brand" href="index.jsp"> <span>SGA</span></a>
         <div class="mi_barra">
-        	<h3>Sistema de Gestion de Alumnos UNR-ARTE</h3>
+        	<h3>Sistema de Gestion de Electrodomesticos</h3>
         </div>
         
         <!-- theme selector starts -->
@@ -93,27 +94,10 @@ else {
         <div  class="well nav-collapse sidebar-nav">
           <ul id="pruebita" class="nav nav-tabs nav-stacked main-menu">
             <li class="nav-header hidden-tablet">Menu Principal</li>
-            <li><a href="CargaAsistencias.jsp"><i class="icon-font"></i> Cargar Asistencias</a>           
-            </li>
-            <li><a class="ajax-link"><i class="icon-list-alt"></i><span class="hidden-tablet"> Listados</span></a>
-            <ul>
-                <li><a class="ajax-link" href="ListadoDatosAlu.jsp">Datos Alumnos</a></li>
-                <li><a class="ajax-link" href="ListadoAsistencias.jsp">Asistencias</a></li>
-                <li><a class="ajax-link" href="ListadoParciales.jsp">Parciales</a></li>
-                <li><a class="ajax-link" href="ListadoTP.jsp">Trabajos Practicos</a></li>
-              </ul>
-            </li>
-            <li><a class="ajax-link" href="CargaParciales.jsp"><i class="icon-edit"></i><span class="hidden-tablet"> Cargar Notas Parciales</span></a></li>
-            <li><a class="ajax-link" href="CargaTP.jsp"><i class="icon-file"></i><span class="hidden-tablet"> Cargar notas TP</span></a></li>
-            <li><a class="ajax-link" href="ModificarAlu.jsp"><i class="icon-pencil"></i><span class="hidden-tablet"> Modificar Datos Alumnos</span></a>
-            </li>
-            <li><a class="ajax-link" href="ModificarDatosDoc.jsp"><i class="icon-refresh"></i><span class="hidden-tablet"> Modificar Datos Docente</span></a></li>
-          <li><a class="ajax-link"><i class="icon-remove"></i><span class="hidden-tablet"> Dar de baja</span></a>
-            <ul>
-                <li><a class="ajax-link" href="EliminaAlu.jsp">Alumno</a></li>
-                <li><a class="ajax-link" href="EliminarComi.jsp">Curso</a></li>
-              </ul>
-            </li>
+           
+            <li><a class="ajax-link" href="ListaElectrodomesticos.jsp"><i class="icon-remove"></i><span class="hidden-tablet"> Cancelar</span></a></li>
+            
+          
           </ul>
         </div><!--/.well -->
       </div><!--/span-->
@@ -123,7 +107,7 @@ else {
       <div class="row-fluid sortable">
         <div class="box span12">
           <div class="box-header well" data-original-title>
-            <h2><i class="icon-edit"></i> Seleccione Alumno a eliminar</h2>
+            <h2><i class="icon-edit"></i> Seleccione electrodomestico a eliminar</h2>
             <div class="box-icon">
               <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
               <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
@@ -131,47 +115,59 @@ else {
             </div>
           </div>
           <div class="box-content">
-           <form name="datos" class="form-horizontal" action="/ServletEliminaAlu" method="post" onsubmit="return validar();">
+           <form name="datos" class="form-horizontal" action="ServletBajaElectro" method="post" onsubmit="return validar();">
               
               <table class="table table-hover table-striped table-bordered" id="tabla">
                 <thead>
-                    <tr>
+                     <tr>
                       <th>
-                        Legajo
+                        ID
                       </th>
                         <th>
 
-                        Nombre
+                        Descripción
                       </th>
                         <th>
-                        Apellido
+                        Color
                       </th>
                       <th>
-                        Alumno a modificar
+                       Peso
                       </th>
+                      <th>
+                       Consumo
+                      </th>
+                      <th>
+                       Precio
+                      </th>
+                     
                     </tr> 
-
 
 
 
                   </thead>
                   <tbody>
-                  <%for(int i=0; i<alumnos.size();i++){ %>
+                  <%for(int i=0; i<vListaElectro.size();i++){ %>
                     <tr>
                       <td>
-                 		<%=alumnos.get(i).getLegajo()%>
+                 		<%=vListaElectro.get(i).getIdElect()%>
                       </td>
                        <td>
-                        <%=alumnos.get(i).getNombre() %>
+                        <%=vListaElectro.get(i).getDescripcion() %>
                       </td>
                        <td>
-                        <%=alumnos.get(i).getApellido() %>
+                        <%=vListaElectro.get(i).getColor() %>
                       </td>
                         <td>
-                        
-                          <input type="checkbox" name="radio" value="<%=alumnos.get(i).getLegajo()%>">
-                        
+						<%=vListaElectro.get(i).getPeso() %>
                       </td>
+                      <td>
+						<%=vListaElectro.get(i).getConsumoEnergetico() %>
+                      </td>
+                         <td>
+						<%=vListaElectro.get(i).getPreciobase()%>
+                      </td>
+                      <td>
+                      <input type="checkbox" name="idElectro" value="<%=vListaElectro.get(i).getIdElect()%>">
 
                     </tr>
 					<%} %>
@@ -285,7 +281,7 @@ else {
 <script type="text/javascript">
   function validar()
   {
-	  var elementos = document.getElementsByName("radio");
+	  var elementos = document.getElementsByName("idElectro");
 	  var bandera=false;
 	  var cont=0;
 	  for(var i=0; i<elementos.length; i++) {
@@ -300,12 +296,12 @@ else {
       var fallo = false;
       var falta = "";
       if (!bandera) {
-          falta += "Debe seleccionar un alumno \n";
+          falta += "Debe seleccionar un electrodomestico \n";
           fallo = true;
       }
       if(cont>1)
 	  {
-    	  falta += "Debe seleccionar sólo un alumno \n";
+    	  falta += "Debe seleccionar sólo un electrodomestico \n";
           fallo = true;
 	  }
       
