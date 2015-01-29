@@ -1,18 +1,18 @@
-<%@page import="datos.CatalogoElectrodomestico"%>
-<%@page import="negocio.ControladorElectrodomesticoNegocio"%>
-<%@page import="models.Electrodomestico"%>
+<%@page import="negocio.ControladorLavarropasNegocio"%>
+<%@page import="datos.CatalogoLavarropas"%>
+<%@page import="models.Lavarropas"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Modificar Datos - Electrodomestico</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="css/bootstrap-slate.css">
-  <link rel="stylesheet" href="css/bootstrap-responsive.css">
-  <link href="css/charisma-app.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>SGE - Listado de Lavarropas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-slate.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.css">
+    <link href="css/charisma-app.css" rel="stylesheet">
 	<link href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
 	<link href='css/fullcalendar.css' rel='stylesheet'>
 	<link href='css/fullcalendar.print.css' rel='stylesheet'  media='print'>
@@ -28,8 +28,6 @@
 	<link href='css/opa-icons.css' rel='stylesheet'>
 	<link href='css/uploadify.css' rel='stylesheet'>
 	<link rel="stylesheet" href="css/estilos.css">
-
-
 <style type="text/css">
     body {
     padding-bottom: 40px;
@@ -41,15 +39,14 @@
 </head>
 <body>
 <%
-if(session.getAttribute("usuario")==null)
+	if(session.getAttribute("usuario")==null)
 	response.sendRedirect("login.jsp");
 else {
-    String usu=(String)session.getAttribute("usuario");
-    ArrayList <Electrodomestico> vListaElectro;
-    ControladorElectrodomesticoNegocio controladorElectro = (ControladorElectrodomesticoNegocio)session.getAttribute("controladorElectro");
+	String usu= (String)session.getAttribute("usuario");
+	ArrayList<Lavarropas> vListaLavarropas;
+    ControladorLavarropasNegocio controladorLavaRopas = (ControladorLavarropasNegocio)session.getAttribute("controladorLavarropas");
    
-    vListaElectro = controladorElectro.GetAllEl();
-  
+    vListaLavarropas = controladorLavaRopas.GetAllLa();		   
 %>
 <div class="navbar">
     <div class="navbar-inner">
@@ -59,7 +56,7 @@ else {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="index.jsp"> <span>SGA</span></a>
+        <a class="brand" href="index.jsp"> <span>SGE</span></a>
         <div class="mi_barra">
         	<h3>Sistema de Gestion de Electrodomesticos</h3>
         </div>
@@ -89,12 +86,12 @@ else {
     <div class="row-fluid">
         
       <!-- left menu starts -->
-       <div class="span2 main-menu-span">
+      <div class="span2 main-menu-span">
         <div  class="well nav-collapse sidebar-nav">
           <ul id="pruebita" class="nav nav-tabs nav-stacked main-menu">
             <li class="nav-header hidden-tablet">Menu Principal</li>
            
-            <li><a class="ajax-link" href="ListaElectrodomesticos.jsp"><i class="icon-remove"></i><span class="hidden-tablet"> Cancelar</span></a></li>
+            <li><a class="ajax-link" href="ListaLavarropas.jsp"><i class="icon-remove"></i><span class="hidden-tablet"> Cancelar</span></a></li>
             
           
           </ul>
@@ -106,7 +103,7 @@ else {
       <div class="row-fluid sortable">
         <div class="box span12">
           <div class="box-header well" data-original-title>
-            <h2><i class="icon-edit"></i> Seleccione Electrodomestico a modificar</h2>
+            <h2 style=width:300px><i class="icon-edit" ></i> Listado de Lavarropas</h2>
             <div class="box-icon">
               <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
               <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
@@ -114,9 +111,7 @@ else {
             </div>
           </div>
           <div class="box-content">
-           <form name="datos" class="form-horizontal" action="ServletModificacionElectro" method="post" onsubmit="return validar();">
-                                         
-              
+           
               <table class="table table-hover table-striped table-bordered" id="tabla">
                 <thead>
                     <tr>
@@ -137,37 +132,46 @@ else {
                        Consumo
                       </th>
                       <th>
+                       Carga
+                      </th>
+                        <th>
                        Precio
                       </th>
                      
                     </tr> 
 
 
+
+
                   </thead>
                   <tbody>
-                  <%for(int i=0; i<vListaElectro.size();i++){ %>
+                  <%for(int i=0; i<vListaLavarropas.size();i++){ %>
                     <tr>
                       <td>
-                 		<%=vListaElectro.get(i).getIdElect()%>
+                 		<%=vListaLavarropas.get(i).getIdElect()%>
                       </td>
                        <td>
-                        <%=vListaElectro.get(i).getDescripcion() %>
+                        <%=vListaLavarropas.get(i).getDescripcion() %>
                       </td>
                        <td>
-                        <%=vListaElectro.get(i).getColor() %>
+                        <%=vListaLavarropas.get(i).getColor() %>
                       </td>
                         <td>
-						<%=vListaElectro.get(i).getPeso() %>
+						<%=vListaLavarropas.get(i).getPeso() %>
                       </td>
                       <td>
-						<%=vListaElectro.get(i).getConsumoEnergetico() %>
+						<%=vListaLavarropas.get(i).getConsumoEnergetico() %>
                       </td>
                          <td>
-						<%=vListaElectro.get(i).getPreciobase()%>
+						<%=vListaLavarropas.get(i).getCarga()%>
                       </td>
                       <td>
-                      <input type="checkbox" name="idElectroSelected" value="<%=vListaElectro.get(i).getIdElect()%>">
+						<%=vListaLavarropas.get(i).getPreciobase()%>
+                      </td>
+                      <td>
+                      <input type="checkbox" name="idLavarrSelected" value="<%=vListaLavarropas.get(i).getIdElect()%>">
 					 </td>
+
                     </tr>
 					<%} %>
                   </tbody>
@@ -176,14 +180,7 @@ else {
 
 
                </table>
-               
           	
-          
-                                       
-                        
-                    
-          		<input type="submit" class="btn btn-primary" value="Modificar" />
-            </form>
           </div>
         </div>
       </div>
@@ -191,17 +188,12 @@ else {
       </div>
   </div>
 
-  <script src="js/jquery.js"></script>
-  <script src="js/bootstrap.js"></script>
-  <script src="js/jquery-1.7.2.min.js"></script>
-  <script src="js/jquery.cookie.js"></script>
-  <script src="js/jquery.history.js"></script>
-  <script src="js/charisma.js"></script>
+  
+ 
+  
 
 
-
-
- <!-- jQuery -->
+<!-- jQuery -->
 	<script src="js/jquery-1.7.2.min.js"></script>
 	<!-- jQuery UI -->
 	<script src="js/jquery-ui-1.8.21.custom.min.js"></script>
@@ -270,9 +262,8 @@ else {
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-    
-  
-  <script>
+
+<script>
 	$(document).ready( function() {
   $('#tabla').dataTable( {
 	  "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
@@ -285,7 +276,7 @@ else {
       "sZeroRecords":"No se encontraron registros",
       "sInfoFiltered":"(filtrado de _MAX_ entradas)",
       "sInfoEmpty":"Mostrando 0 de 0 entradas",
-      "sLengthMenu":     "registros a mostrar por pagina _MENU_",
+      "sLengthMenu":     "registros a mostrar por página _MENU_",
     	  "oPaginate": {
           "sNext":     "Siguiente",
           "sPrevious": "Anterior"
@@ -297,7 +288,7 @@ else {
 <script type="text/javascript">
   function validar()
   {
-	  var elementos = document.getElementsByName("idElectroSelected");
+	  var elementos = document.getElementsByName("idLavarrSelected");
 	  var bandera=false;
 	  var cont=0;
 	  for(var i=0; i<elementos.length; i++) {
@@ -312,12 +303,12 @@ else {
       var fallo = false;
       var falta = "";
       if (!bandera) {
-          falta += "Debe seleccionar un electrodomestico \n";
+          falta += "Debe seleccionar un lavarropas \n";
           fallo = true;
       }
       if(cont>1)
 	  {
-    	  falta += "Debe seleccionar sólo un electrodomestico \n";
+    	  falta += "Debe seleccionar sólo un lavarropas \n";
           fallo = true;
 	  }
       
