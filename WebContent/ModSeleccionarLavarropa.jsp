@@ -111,7 +111,7 @@ else {
             </div>
           </div>
           <div class="box-content">
-            <form name="datos" class="form-horizontal" action="ServletModificaciónLava" method="post" onsubmit="return validar();">
+            <form name="datos" class="form-horizontal" action="ServletModificacionLava" method="post" onsubmit="return validar();">
               <table class="table table-hover table-striped table-bordered" id="tabla">
                 <thead>
                     <tr>
@@ -177,6 +177,10 @@ else {
                   </tbody>
 
                </table>
+               <div class="form-actions">
+							  			<button type="submit" class="btn btn-primary">Guardar cambios</button>
+										<button type="reset" class="btn">Cancelar</button>
+									</div>
           	 </form>
           </div>
         </div>

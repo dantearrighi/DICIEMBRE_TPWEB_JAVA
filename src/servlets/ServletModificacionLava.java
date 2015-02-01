@@ -17,7 +17,7 @@ import negocio.ControladorLavarropasNegocio;;
  * ESTE ES EL QUE OBTIENE EL OBJETO SELECCIONADO Y REDIRIGE A LA VENTANA DE MODIFICACION
  * Servlet implementation class ServletModificacionElectro
  */
-@WebServlet("/ServletModificacionElectro")
+@WebServlet("/ServletModificacionLava")
 public class ServletModificacionLava extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

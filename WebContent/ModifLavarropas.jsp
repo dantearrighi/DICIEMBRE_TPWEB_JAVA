@@ -78,7 +78,7 @@ ControladorLavarropasNegocio controladorLavar = (ControladorLavarropasNegocio)se
           <ul id="pruebita" class="nav nav-tabs nav-stacked main-menu">
             <li class="nav-header hidden-tablet">Menu Principal</li>
            
-            <li><a class="ajax-link" href="ListaLavarropas.jsp"><i class="icon-remove"></i><span class="hidden-tablet"> Cancelar</span></a></li>
+            <li><a class="ajax-link" href="ListaLavarropas.jsp"><i class="icon-remove"></i><span class="hidden-tablet">Cancelar</span></a></li>
             
           
           </ul>
