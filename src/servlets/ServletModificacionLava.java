@@ -10,21 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import models.Electrodomestico;
-import negocio.ControladorElectrodomesticoNegocio;
+import models.Lavarropas;
+import negocio.ControladorLavarropasNegocio;;
 
 /**
  * ESTE ES EL QUE OBTIENE EL OBJETO SELECCIONADO Y REDIRIGE A LA VENTANA DE MODIFICACION
  * Servlet implementation class ServletModificacionElectro
  */
 @WebServlet("/ServletModificacionElectro")
-public class ServletModificacionElectro extends HttpServlet {
+public class ServletModificacionLava extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletModificacionElectro() {
+    public ServletModificacionLava() {
         
         // TODO Auto-generated constructor stub
     }
@@ -41,15 +41,15 @@ public class ServletModificacionElectro extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
-		ControladorElectrodomesticoNegocio controladorElectro =(ControladorElectrodomesticoNegocio)session.getAttribute("controladorElectro");
+		ControladorLavarropasNegocio controladorLava =(ControladorLavarropasNegocio)session.getAttribute("controladorLava");
 				
 		int pID =Integer.parseInt(request.getParameter("idElectroSelected"));
 		
-		Electrodomestico electroSelect =controladorElectro.getOne(pID);
+		Lavarropas lavaSelect =controladorLava.getOne(pID);
 		
-		request.setAttribute("electroSelect", electroSelect);
+		request.setAttribute("lavaSelect", lavaSelect);
 		
-		request.getRequestDispatcher("/ModifElectrodomestico.jsp").forward(request, response);
+		request.getRequestDispatcher("/ModifLavarropas.jsp").forward(request, response);
 		
 		// TODO Auto-generated method stub
 	}

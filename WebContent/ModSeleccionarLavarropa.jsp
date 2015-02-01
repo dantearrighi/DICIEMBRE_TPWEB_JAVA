@@ -111,7 +111,7 @@ else {
             </div>
           </div>
           <div class="box-content">
-           
+            <form name="datos" class="form-horizontal" action="ServletModificaciónLava" method="post" onsubmit="return validar();">
               <table class="table table-hover table-striped table-bordered" id="tabla">
                 <thead>
                     <tr>
@@ -171,16 +171,13 @@ else {
                       <td>
                       <input type="checkbox" name="idLavarrSelected" value="<%=vListaLavarropas.get(i).getIdElect()%>">
 					 </td>
-
+                    
                     </tr>
 					<%} %>
                   </tbody>
 
-
-
-
                </table>
-          	
+          	 </form>
           </div>
         </div>
       </div>
