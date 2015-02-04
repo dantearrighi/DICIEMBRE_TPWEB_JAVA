@@ -181,11 +181,8 @@ else {
 
                </table>
 
-               <div class="form-actions">
-							  			<button type="submit" class="btn btn-primary">Guardar cambios</button>
-										<button type="reset" class="btn">Cancelar</button>
-									</div>
-          	 </form>
+               <input type="submit" class="btn btn-primary" value="Modificar" />
+            </form>
 
           </div>
         </div>

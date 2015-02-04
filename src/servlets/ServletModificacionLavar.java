@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import models.Lavarropas;
 import negocio.ControladorLavarropasNegocio;
 /**
+ * * ESTE ES EL QUE OBTIENE EL OBJETO SELECCIONADO Y REDIRIGE A LA VENTANA DE MODIFICACION
  * Servlet implementation class ServletModificacionLavar
  */
 @WebServlet("/ServletModificacionLavar")
