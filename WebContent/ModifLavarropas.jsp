@@ -7,7 +7,9 @@
 <html>
 <head>
   <meta charset="UTF-8">
+
   <title>Modificar datos - Lavarropas</title>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="css/bootstrap-slate.css">
   <link rel="stylesheet" href="css/bootstrap-responsive.css">
@@ -32,7 +34,9 @@ if(session.getAttribute("usuario")==null)
 else {
 String usu= (String)session.getAttribute("usuario");
 Lavarropas lavar =(Lavarropas)request.getAttribute("lavaSelect");
-ControladorLavarropasNegocio controladorLavar = (ControladorLavarropasNegocio)session.getAttribute("controladorLavar");
+
+ControladorLavarropasNegocio controladorLavarropas = (ControladorLavarropasNegocio)session.getAttribute("controladorLavarropas");
+
 %>
  
 <div class="navbar">
@@ -78,7 +82,9 @@ ControladorLavarropasNegocio controladorLavar = (ControladorLavarropasNegocio)se
           <ul id="pruebita" class="nav nav-tabs nav-stacked main-menu">
             <li class="nav-header hidden-tablet">Menu Principal</li>
            
+
             <li><a class="ajax-link" href="ListaLavarropas.jsp"><i class="icon-remove"></i><span class="hidden-tablet">Cancelar</span></a></li>
+
             
           
           </ul>
@@ -100,15 +106,14 @@ ControladorLavarropasNegocio controladorLavar = (ControladorLavarropasNegocio)se
           <div class="box-content">
             <form name="datos" action="ServletModLavar"  class="form-horizontal" method="post" onsubmit="return validar();">
 								<fieldset>
-							 									 		
-							 		<div class="control-group">
+
+
+									<div class="control-group">
 							  			<label class="control-label" for="id">ID:</label>
 							 				 <div class="controls">
 												<input style=" color:black;" type="text" id="id" name="id" maxlength="50" value="<%=lavar.getIdElect()%>" readonly/>
 							  				</div>
 									</div>
-									
-							 		
 							 		
 							 		
 							 		<div class="control-group">
@@ -156,6 +161,7 @@ ControladorLavarropasNegocio controladorLavar = (ControladorLavarropasNegocio)se
 							      </p>
 								  <p>&nbsp;</p>
 								</div>
+
 									<div class="control-group">
 							  			<label class="control-label" for="oldCarga">Carga:</label>
 							 				 <div class="controls">
@@ -170,6 +176,7 @@ ControladorLavarropasNegocio controladorLavar = (ControladorLavarropasNegocio)se
 							  				</div>
 									</div>
 									
+
 									
 									<div class="control-group">
 							  			<label class="control-label" for="descripcion">Descripcion:</label>
@@ -186,6 +193,7 @@ ControladorLavarropasNegocio controladorLavar = (ControladorLavarropasNegocio)se
 									</div>
 									
 									<div class="control-group">
+
 							  			<label class="control-label" for="precio">Precio:</label>
 							 				 <div class="controls">
 												<input type="text" id="precio" name="precio" maxlength="50" value="<%=lavar.getPreciobase()%>"/>

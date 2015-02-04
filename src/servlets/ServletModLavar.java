@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import negocio.ControladorLavarropasNegocio;
 
 /**
- * ESTE ES EL QUE MODIFICA
+
  * Servlet implementation class ServletModLavar
  */
 @WebServlet("/ServletModLavar")
@@ -39,19 +39,23 @@ public class ServletModLavar extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
-		ControladorLavarropasNegocio controladorLavar =(ControladorLavarropasNegocio)session.getAttribute("controladorLavar");
+
+		ControladorLavarropasNegocio controladorLavarropas =(ControladorLavarropasNegocio)session.getAttribute("controladorLavarropas");
+
 		
 		char pConsumo = request.getParameter("consumo").charAt(0); //Selecciono el primer caracter de la cadena (ademas, el unico)
 		String pColor =request.getParameter("color").toUpperCase();
 		String pDescripcion =request.getParameter("descripcion");
 		float pPeso =Float.parseFloat(request.getParameter("peso"));
-		float pCarga =Float.parseFloat(request.getParameter("carga"));
+
 		float pPrecio =Float.parseFloat(request.getParameter("precio"));
+		float pCarga =Float.parseFloat(request.getParameter("carga"));
 		int pID=Integer.parseInt(request.getParameter("id"));
 		
 		try{
-			controladorLavar.UpdateElectro(pID, pPrecio, pPeso, pColor, pConsumo, pCarga, pDescripcion);
+			controladorLavarropas.UpdateElectro(pID, pPrecio, pPeso, pColor, pConsumo, pCarga, pDescripcion);
 		response.sendRedirect("/JAVA_TPWEB/ListaLavarropas.jsp"); //Redirigir a MODIFICACION EXITO, NO a la LISTA
+
 		}
 		catch(Exception e)
 		{
@@ -59,5 +63,6 @@ public class ServletModLavar extends HttpServlet {
 		}
 		// TODO Auto-generated method stub
 	}
+
 
 }

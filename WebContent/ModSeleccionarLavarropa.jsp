@@ -43,10 +43,10 @@
 	response.sendRedirect("login.jsp");
 else {
 	String usu= (String)session.getAttribute("usuario");
-	ArrayList<Lavarropas> vListaLavarropas;
-    ControladorLavarropasNegocio controladorLavaRopas = (ControladorLavarropasNegocio)session.getAttribute("controladorLavarropas");
+	ArrayList <Lavarropas> vListaLavarropas;
+    ControladorLavarropasNegocio controladorLavarropas = (ControladorLavarropasNegocio)session.getAttribute("controladorLavarropas");
    
-    vListaLavarropas = controladorLavaRopas.GetAllLa();		   
+    vListaLavarropas = controladorLavarropas.GetAllLa();		   
 %>
 <div class="navbar">
     <div class="navbar-inner">
@@ -111,7 +111,10 @@ else {
             </div>
           </div>
           <div class="box-content">
-            <form name="datos" class="form-horizontal" action="ServletModificacionLava" method="post" onsubmit="return validar();">
+
+          <form name="datos" class="form-horizontal" action="ServletModificacionLavar" method="post" onsubmit="return validar();">
+                                        
+
               <table class="table table-hover table-striped table-bordered" id="tabla">
                 <thead>
                     <tr>
@@ -177,11 +180,13 @@ else {
                   </tbody>
 
                </table>
+
                <div class="form-actions">
 							  			<button type="submit" class="btn btn-primary">Guardar cambios</button>
 										<button type="reset" class="btn">Cancelar</button>
 									</div>
           	 </form>
+
           </div>
         </div>
       </div>

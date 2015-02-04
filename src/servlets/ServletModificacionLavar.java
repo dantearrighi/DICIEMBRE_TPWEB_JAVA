@@ -11,20 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import models.Lavarropas;
-import negocio.ControladorLavarropasNegocio;;
-
+import negocio.ControladorLavarropasNegocio;
 /**
- * ESTE ES EL QUE OBTIENE EL OBJETO SELECCIONADO Y REDIRIGE A LA VENTANA DE MODIFICACION
- * Servlet implementation class ServletModificacionElectro
+ * Servlet implementation class ServletModificacionLavar
  */
-@WebServlet("/ServletModificacionLava")
-public class ServletModificacionLava extends HttpServlet {
+@WebServlet("/ServletModificacionLavar")
+public class ServletModificacionLavar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletModificacionLava() {
+    public ServletModificacionLavar() {
         
         // TODO Auto-generated constructor stub
     }
@@ -41,13 +39,13 @@ public class ServletModificacionLava extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
-		ControladorLavarropasNegocio controladorLava =(ControladorLavarropasNegocio)session.getAttribute("controladorLava");
+		ControladorLavarropasNegocio controladorLavarropas =(ControladorLavarropasNegocio)session.getAttribute("controladorLavarropas");
 				
-		int pID =Integer.parseInt(request.getParameter("idElectroSelected"));
+		int pID =Integer.parseInt(request.getParameter("idLavarrSelected"));
 		
-		Lavarropas lavaSelect =controladorLava.getOne(pID);
+		Lavarropas lavaSelect =controladorLavarropas.getOne(pID);
 		
-		request.setAttribute("lavaSelect", lavaSelect);
+		request.setAttribute("lavarSelect", lavaSelect);
 		
 		request.getRequestDispatcher("/ModifLavarropas.jsp").forward(request, response);
 		
