@@ -17,7 +17,7 @@ public class CatalogoTelevisor {
 	{
 		try{
 			
-		String SQLCons= "INSERT INTO Electrodomestico (descripcion, color_elect, consumo_elect, peso_elect ,precio_elect, Sintoniz_tele, Resol_tele) VALUES (?,?,?,?,?,?,?)";
+		String SQLCons= "INSERT INTO Electrodomestico (descripcion, color_elect, consumo_elect, peso_elect ,precio_elect, Sintoniz_tele, Resol_tele)"+ " VALUES (?,?,?,?,?,?,?)";
 		ConexionBD conecta = new ConexionBD();
 		conecta.OpenConection();
 		PreparedStatement stmt = conecta.Cone.prepareStatement(SQLCons);
@@ -26,9 +26,15 @@ public class CatalogoTelevisor {
 		stmt.setFloat(5, TeleModel.getPreciobase());
 		stmt.setFloat(4, TeleModel.getPeso());
 		stmt.setObject(3, TeleModel.getConsumoEnergetico(),java.sql.Types.CHAR);
-		stmt.setInt(6,TeleModel.getPulgadas());
-		stmt.setBoolean(7, TeleModel.isSintonizadorTDT());
-
+		stmt.setInt(7,TeleModel.getPulgadas());
+		if(TeleModel.isSintonizadorTDT() == true)
+		{
+			stmt.setString(6, "1");	
+		}
+		else
+		{
+		stmt.setString(6, "0");
+		}
 
 
 			stmt.execute(); 
