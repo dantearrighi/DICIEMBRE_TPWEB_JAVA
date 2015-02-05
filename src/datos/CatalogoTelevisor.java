@@ -27,7 +27,8 @@ public class CatalogoTelevisor {
 		stmt.setFloat(4, TeleModel.getPeso());
 		stmt.setObject(3, TeleModel.getConsumoEnergetico(),java.sql.Types.CHAR);
 		stmt.setInt(7,TeleModel.getPulgadas());
-		if(TeleModel.isSintonizadorTDT() == true)
+		stmt.setBoolean(6, TeleModel.isSintonizadorTDT());
+		/*if(TeleModel.isSintonizadorTDT() == true)
 		{
 			stmt.setString(6, "1");	
 		}
@@ -35,7 +36,7 @@ public class CatalogoTelevisor {
 		{
 		stmt.setString(6, "0");
 		}
-
+*/
 
 			stmt.execute(); 
 			conecta.CloseConnection();
