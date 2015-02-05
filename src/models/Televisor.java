@@ -35,7 +35,7 @@ public class Televisor extends Electrodomestico {
 		this.setPreciobase(pPrecio);
 	}
 	/*Constructor con todos los atributos*/
-	public Televisor(float pPrecio, float pPeso, char pConsumo, String pColor, boolean pSintonizador, int pPulgadas)
+	public Televisor(float pPrecio, float pPeso, char pConsumo, String pColor, boolean pSintonizador, int pPulgadas, String pDescripcion)
 	{
 		super();
 		this.setColor(pColor);
@@ -44,7 +44,7 @@ public class Televisor extends Electrodomestico {
 		this.setPreciobase(pPeso);
 		this.setPulgadas(pPulgadas);
 		this.setSintonizadorTDT(pSintonizador);
-		
+		this.setDescripcion(pDescripcion);
 	}
 
 }

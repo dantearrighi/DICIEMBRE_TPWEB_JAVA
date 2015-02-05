@@ -52,7 +52,7 @@ public class ControladorTelevisorNegocio extends ControladorElectrodomesticoNego
 			 return iDElectro;
 		 } else
 		 {
-			 Televisor modelTele = new Televisor(pPrecioOK, pPeso, pConsumoOK, pColorOK, pSintoniz, pResolucion);
+			 Televisor modelTele = new Televisor(pPrecioOK, pPeso, pConsumoOK, pColorOK, pSintoniz, pResolucion, pDescripcion);
 			 int iDElectro = catTele.AddTelev(modelTele);
 			 
 			 return iDElectro;
@@ -94,7 +94,7 @@ public class ControladorTelevisorNegocio extends ControladorElectrodomesticoNego
 		String pColorOk = this.comprobarColor(pColor);
 		char pConsumoOk = this.comprobarConsumoEnergetico(pConsumo);
 		float pPrecioOk = this.precioFinal(pConsumo, pPeso, pPrecio);
-		Televisor TeleModel = new Televisor(pPrecioOk, pPeso, pConsumoOk, pColorOk, pSintoniz, pResolucion);
+		Televisor TeleModel = new Televisor(pPrecioOk, pPeso, pConsumoOk, pColorOk, pSintoniz, pResolucion, pDescripcion);
 		TeleModel.setIdElect(idTv);
 		catTele.UpdateTelev(TeleModel);
 		return TeleModel;
