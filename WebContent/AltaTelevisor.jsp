@@ -143,10 +143,12 @@ else {
                                 
                                 
                                 <div> 
+
                                  <label class="control-label" for="descripcion">Descripción</label>
                                  <div class="controls">
                                    <p>
                                      <input autofocus class="input-large span6" type="text" id="descripcion" name="descripcion">		  
+
                                    </p>
                                    <p>&nbsp;</p>
                                  </div>
