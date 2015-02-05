@@ -50,8 +50,8 @@ public class ControladorLavarropasNegocio extends ControladorElectrodomesticoNeg
 					 return iDElectro;}
 				 else
 				 {
-					 Lavarropas LavaModel = new Lavarropas(pPrecioOK, pPeso, pConsumoOK, pColorOK, pCarga, pDescripcion);
-					 int iDElectro = catLava.AddElectro(LavaModel);
+					// Lavarropas LavaModel = new Lavarropas(pPrecioOK, pPeso, pConsumoOK, pColorOK, pCarga, pDescripcion);
+					 int iDElectro = catLava.AddLavarrop(pPrecioOK, pPeso, pColorOK, pConsumoOK, pCarga, pDescripcion);
 					 
 					 return iDElectro;
 				 }

@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import negocio.ControladorElectrodomesticoNegocio;
+import negocio.ControladorLavarropasNegocio;
 
 /**
- * Servlet implementation class ServletBajaElectro
+ * Servlet implementation class ServletBajaLava
  */
-@WebServlet("/ServletBajaElectro")
-public class ServletBajaElectro extends HttpServlet {
+@WebServlet("/ServletBajaLava")
+public class ServletBajaLava extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletBajaElectro() {
+    public ServletBajaLava() {
       
         // TODO Auto-generated constructor stub
     }
@@ -40,10 +40,10 @@ public class ServletBajaElectro extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 		
-		ControladorElectrodomesticoNegocio controlador = (ControladorElectrodomesticoNegocio)session.getAttribute("controladorElectro");
+		ControladorLavarropasNegocio controlador = (ControladorLavarropasNegocio)session.getAttribute("controladorLavarropas");
 		int vidElectro = Integer.parseInt(request.getParameter("idElectro"));
-		controlador.DeleteElectro(vidElectro);
-		response.sendRedirect("/JAVA_TPWEB/ListaElectrodomesticos.jsp");
+		controlador.DeleteLavarropa(vidElectro);
+		response.sendRedirect("/JAVA_TPWEB/ListaLavarropas.jsp");
 		
 		
 		// TODO Auto-generated method stub

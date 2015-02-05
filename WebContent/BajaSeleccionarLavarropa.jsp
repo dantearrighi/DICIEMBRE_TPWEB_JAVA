@@ -4,15 +4,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>SGE - Listado de Lavarropas</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-slate.css">
-    <link rel="stylesheet" href="css/bootstrap-responsive.css">
-    <link href="css/charisma-app.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Eliminar Lavarropas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" type="text/css" href="css/bootstrap-slate.css">
+  <link rel="stylesheet" href="css/bootstrap-responsive.css">
+  <link href="css/charisma-app.css" rel="stylesheet">
 	<link href="css/jquery-ui-1.8.21.custom.css" rel="stylesheet">
 	<link href='css/fullcalendar.css' rel='stylesheet'>
 	<link href='css/fullcalendar.print.css' rel='stylesheet'  media='print'>
@@ -28,6 +29,9 @@
 	<link href='css/opa-icons.css' rel='stylesheet'>
 	<link href='css/uploadify.css' rel='stylesheet'>
 	<link rel="stylesheet" href="css/estilos.css">
+
+
+
 <style type="text/css">
     body {
     padding-bottom: 40px;
@@ -39,14 +43,14 @@
 </head>
 <body>
 <%
-	if(session.getAttribute("usuario")==null)
+if(session.getAttribute("usuario")==null)
 	response.sendRedirect("login.jsp");
 else {
-	String usu= (String)session.getAttribute("usuario");
-	ArrayList<Lavarropas> vListaLavarropas;
-    ControladorLavarropasNegocio controladorLavaRopas = (ControladorLavarropasNegocio)session.getAttribute("controladorLavarropas");
-   
-    vListaLavarropas = controladorLavaRopas.GetAllLa();		   
+    String usu= (String)session.getAttribute("usuario");
+	ArrayList <Lavarropas> vListaLava;
+    ControladorLavarropasNegocio controlador = (ControladorLavarropasNegocio)session.getAttribute("controladorLavarropas");
+    vListaLava = controlador.GetAllLa();
+
 %>
 <div class="navbar">
     <div class="navbar-inner">
@@ -56,7 +60,7 @@ else {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="index.jsp"> <span>SGE</span></a>
+        <a class="brand" href="index.jsp"> <span>SGA</span></a>
         <div class="mi_barra">
         	<h3>Sistema de Gestion de Electrodomesticos</h3>
         </div>
@@ -90,22 +94,10 @@ else {
         <div  class="well nav-collapse sidebar-nav">
           <ul id="pruebita" class="nav nav-tabs nav-stacked main-menu">
             <li class="nav-header hidden-tablet">Menu Principal</li>
-            <li><a href="AltaLavarropas.jsp"><i class="icon-file"></i> Alta Lavarropas</a>           
-            </li>
-            <li><a class="ajax-link"><i class="icon-list-alt"></i><span class="hidden-tablet"> Listado ITEMS</span></a>
-            <ul>
-                <li><a class="ajax-link" href="">SUBITEM1</a></li>
-                <li><a class="ajax-link" href="">SUBITEM2</a></li>
-                <li><a class="ajax-link" href="">SUBITEM3</a></li>
-                <li><a class="ajax-link" href="">SUBITEM4</a></li>
-              </ul>
-            </li>
-            <li><a class="ajax-link" href=""><i class="icon-edit"></i><span class="hidden-tablet"> SUBITEM1</span></a></li>
-            <li><a class="ajax-link" href=""><i class="icon-file"></i><span class="hidden-tablet"> SUBITEM2</span></a></li>
-            <li><a class="ajax-link" href=""><i class="icon-pencil"></i><span class="hidden-tablet"> SUBITEM3</span></a>
-            </li>
-            <li><a class="ajax-link" href="ModSeleccionarLavarropa.jsp"><i class="icon-refresh"></i><span class="hidden-tablet"> Modificar Datos</span></a></li>
-            <li><a class="ajax-link" href="BajaSeleccionarLavarropa.jsp"><i class="icon-remove"></i><span class="hidden-tablet"> Dar de baja</span></a></li>
+           
+            <li><a class="ajax-link" href="ListaElectrodomesticos.jsp"><i class="icon-remove"></i><span class="hidden-tablet"> Cancelar</span></a></li>
+            
+          
           </ul>
         </div><!--/.well -->
       </div><!--/span-->
@@ -115,7 +107,7 @@ else {
       <div class="row-fluid sortable">
         <div class="box span12">
           <div class="box-header well" data-original-title>
-            <h2 style=width:300px><i class="icon-edit" ></i> Listado de Lavarropas</h2>
+            <h2><i class="icon-edit"></i> Seleccione lavarropas a eliminar</h2>
             <div class="box-icon">
               <a href="#" class="btn btn-setting btn-round"><i class="icon-cog"></i></a>
               <a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>
@@ -123,10 +115,11 @@ else {
             </div>
           </div>
           <div class="box-content">
-           
+           <form name="datos" class="form-horizontal" action="ServletBajaLava" method="post" onsubmit="return validar();">
+              
               <table class="table table-hover table-striped table-bordered" id="tabla">
                 <thead>
-                    <tr>
+                     <tr>
                       <th>
                         ID
                       </th>
@@ -146,7 +139,7 @@ else {
                       <th>
                        Carga
                       </th>
-                        <th>
+                      <th>
                        Precio
                       </th>
                      
@@ -154,32 +147,33 @@ else {
 
 
 
-
                   </thead>
                   <tbody>
-                  <%for(int i=0; i<vListaLavarropas.size();i++){ %>
+                  <%for(int i=0; i<vListaLava.size();i++){ %>
                     <tr>
                       <td>
-                 		<%=vListaLavarropas.get(i).getIdElect()%>
+                 		<%=vListaLava.get(i).getIdElect()%>
                       </td>
                        <td>
-                        <%=vListaLavarropas.get(i).getDescripcion() %>
+                        <%=vListaLava.get(i).getDescripcion() %>
                       </td>
                        <td>
-                        <%=vListaLavarropas.get(i).getColor() %>
+                        <%=vListaLava.get(i).getColor() %>
                       </td>
                         <td>
-						<%=vListaLavarropas.get(i).getPeso() %>
+						<%=vListaLava.get(i).getPeso() %>
                       </td>
                       <td>
-						<%=vListaLavarropas.get(i).getConsumoEnergetico() %>
+						<%=vListaLava.get(i).getConsumoEnergetico() %>
                       </td>
                          <td>
-						<%=vListaLavarropas.get(i).getCarga()%>
+						<%=vListaLava.get(i).getCarga() %>
+                      </td>
+                       <td>
+						<%=vListaLava.get(i).getPreciobase() %>
                       </td>
                       <td>
-						<%=vListaLavarropas.get(i).getPreciobase()%>
-                      </td>
+                      <input type="checkbox" name="idElectro" value="<%=vListaLava.get(i).getIdElect()%>">
 
                     </tr>
 					<%} %>
@@ -189,7 +183,8 @@ else {
 
 
                </table>
-          	
+          		<input type="submit" class="btn btn-primary" value="Eliminar" />
+            </form>
           </div>
         </div>
       </div>
@@ -197,12 +192,7 @@ else {
       </div>
   </div>
 
-  
- 
-  
-
-
-<!-- jQuery -->
+  <!-- jQuery -->
 	<script src="js/jquery-1.7.2.min.js"></script>
 	<!-- jQuery UI -->
 	<script src="js/jquery-ui-1.8.21.custom.min.js"></script>
@@ -271,8 +261,8 @@ else {
 	<script src="js/jquery.history.js"></script>
 	<!-- application script for Charisma demo -->
 	<script src="js/charisma.js"></script>
-
-<script>
+  
+  <script>
 	$(document).ready( function() {
   $('#tabla').dataTable( {
 	  "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
@@ -285,7 +275,7 @@ else {
       "sZeroRecords":"No se encontraron registros",
       "sInfoFiltered":"(filtrado de _MAX_ entradas)",
       "sInfoEmpty":"Mostrando 0 de 0 entradas",
-      "sLengthMenu":     "registros a mostrar por página _MENU_",
+      "sLengthMenu":     "campos a mostrar por pagina _MENU_",
     	  "oPaginate": {
           "sNext":     "Siguiente",
           "sPrevious": "Anterior"
@@ -294,6 +284,44 @@ else {
   } );
 } );
 </script>
+<script type="text/javascript">
+  function validar()
+  {
+	  var elementos = document.getElementsByName("idElectro");
+	  var bandera=false;
+	  var cont=0;
+	  for(var i=0; i<elementos.length; i++) {
+		  if(elementos[i].checked)
+			  {
+			  bandera=true;
+			  cont=cont+1;
+			  }
+		  
+		}
+	
+      var fallo = false;
+      var falta = "";
+      if (!bandera) {
+          falta += "Debe seleccionar un electrodomestico \n";
+          fallo = true;
+      }
+      if(cont>1)
+	  {
+    	  falta += "Debe seleccionar sólo un electrodomestico \n";
+          fallo = true;
+	  }
+      
+
+      if (fallo) {
+          alert(falta);
+          return false;
+      }
+      else { 
+          return true;
+      }
+  }
+  </script>
+
  <%} %> 
 </body>
 </html>
