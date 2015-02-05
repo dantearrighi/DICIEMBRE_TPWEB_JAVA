@@ -46,7 +46,7 @@ public class ServletModificacionLavar extends HttpServlet {
 		
 		Lavarropas lavaSelect =controladorLavarropas.getOne(pID);
 		
-		request.setAttribute("lavarSelect", lavaSelect);
+		request.setAttribute("lavaSelect", lavaSelect);
 		
 		request.getRequestDispatcher("/ModifLavarropas.jsp").forward(request, response);
 		

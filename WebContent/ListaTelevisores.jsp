@@ -181,7 +181,19 @@ else {
 						<%=vListaTelevisores.get(i).getPulgadas()%>
                       </td>
                        <td>
-						<%=vListaTelevisores.get(i).isSintonizadorTDT()%>
+						<% if(vListaTelevisores.get(i).isSintonizadorTDT()==true)
+						{
+							 %> Si 
+							 <% 
+						}
+							else
+							{
+													
+								 %> No
+								 <%
+							}
+						%>
+						
                       </td>
                        <td>
 						<%=vListaTelevisores.get(i).getPreciobase()%>
