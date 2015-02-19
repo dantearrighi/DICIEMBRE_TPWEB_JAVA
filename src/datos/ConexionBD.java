@@ -26,7 +26,7 @@ public class ConexionBD {
 	static String Url = "jdbc:mysql://localhost:3306/";
 	static String dbName = "Electro_db";
 	static String driver = "com.mysql.jdbc.Driver";
-	static String userName = "dante"; 
+	static String userName = "root"; 
 	static String password = "";
 	
 	
