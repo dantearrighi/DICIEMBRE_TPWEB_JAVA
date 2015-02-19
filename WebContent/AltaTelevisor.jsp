@@ -53,7 +53,7 @@ else {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="index.jsp"> <span>SGE</span></a>
+        <a class="brand" href="MenuElectro.jsp"> <span>SGE</span></a>
        
         <div class="mi_barra">
         	<h3>Sistema de Gestion de Electrodomesticos </h3>

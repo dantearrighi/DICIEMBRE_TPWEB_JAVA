@@ -56,7 +56,7 @@ else {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="index.jsp"> <span>SGE</span></a>
+        <a class="brand" href="MenuElectro.jsp"> <span>SGE</span></a>
         <div class="mi_barra">
         	<h3>Sistema de Gestion de Electrodomesticos</h3>
         </div>
@@ -92,20 +92,10 @@ else {
             <li class="nav-header hidden-tablet">Menu Principal</li>
             <li><a href="AltaLavarropas.jsp"><i class="icon-file"></i> Alta Lavarropas</a>           
             </li>
-            <li><a class="ajax-link"><i class="icon-list-alt"></i><span class="hidden-tablet"> Listado ITEMS</span></a>
-            <ul>
-                <li><a class="ajax-link" href="">SUBITEM1</a></li>
-                <li><a class="ajax-link" href="">SUBITEM2</a></li>
-                <li><a class="ajax-link" href="">SUBITEM3</a></li>
-                <li><a class="ajax-link" href="">SUBITEM4</a></li>
-              </ul>
-            </li>
-            <li><a class="ajax-link" href=""><i class="icon-edit"></i><span class="hidden-tablet"> SUBITEM1</span></a></li>
-            <li><a class="ajax-link" href=""><i class="icon-file"></i><span class="hidden-tablet"> SUBITEM2</span></a></li>
-            <li><a class="ajax-link" href=""><i class="icon-pencil"></i><span class="hidden-tablet"> SUBITEM3</span></a>
-            </li>
+           
             <li><a class="ajax-link" href="ModSeleccionarLavarropa.jsp"><i class="icon-refresh"></i><span class="hidden-tablet"> Modificar Datos</span></a></li>
             <li><a class="ajax-link" href="BajaSeleccionarLavarropa.jsp"><i class="icon-remove"></i><span class="hidden-tablet"> Dar de baja</span></a></li>
+              <li><a class="ajax-link" href="MenuElectro.jsp"><i class="icon-minus"></i><span class="hidden-tablet"> Volver</span></a></li>
           </ul>
         </div><!--/.well -->
       </div><!--/span-->

@@ -38,7 +38,7 @@ String usu= (String)session.getAttribute("usuario");
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="index.jsp"><span>SGE</span></a>
+        <a class="brand" href="MenuElectro.jsp"><span>SGE</span></a>
         <div class="mi_barra">
         	<h3>Sistema de Gestion de Electrodomesticos</h3>
         </div>
@@ -50,52 +50,31 @@ String usu= (String)session.getAttribute("usuario");
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li><a type="button" href="login.jsp">Cerrar Sesion</a></li>
+            <li><a type="button" href="login.jsp">Logout</a></li>
           </ul>
         </div>
-        
-        
       </div>
     </div>
   </div>
   <!-- topbar ends -->
 
-
-
-
-
 <div class="container-fluid">
     <div class="row-fluid">
-        
       <!-- left menu starts -->
       <div class="span2 main-menu-span">
         <div  class="well nav-collapse sidebar-nav">
           <ul id="pruebita" class="nav nav-tabs nav-stacked main-menu">
-            <li class="nav-header hidden-tablet">Menu Principal</li>
+            <li class="nav-header hidden-tablet">Main Menu</li>
             
             <li><a class="ajax-link"><i class="icon-list-alt"></i><span class="hidden-tablet">Listas</span></a>
             <ul>
                 <li><a class="ajax-link" href="ListaElectrodomesticos.jsp">Electrodomesticos</a></li>
                 <li><a class="ajax-link" href="ListaLavarropas.jsp">Lavarropas</a></li>
                 <li><a class="ajax-link" href="ListaTelevisores.jsp">Televisores</a></li>
-              </ul>
+             </ul>
             </li>
-            <li><a class="ajax-link" href="ListaLavarropas.jsp"><i class="icon-list-alt"></i><span class="hidden-tablet"> LIST ITEM</span></a></li>
-            <li><a class="ajax-link" href="CargaTP.jsp"><i class="icon-file"></i><span class="hidden-tablet"> ITEM MENU2</span></a></li>
-            <li><a class="ajax-link" href="ModificarAlu.jsp"><i class="icon-pencil"></i><span class="hidden-tablet"> ITEM MENU3</span></a>
-            </li>
-            <li><a class="ajax-link" href="modificarElectro.jsp"><i class="icon-refresh"></i><span class="hidden-tablet"> Modificar</span></a>
-             <ul>
-                <li><a class="ajax-link" href="editUsuario.jsp">Usuario</a></li>
-                <li><a class="ajax-link" href="editElectro.jsp">Electrodomestico</a></li>
-              </ul>
-            </li>
-            <li><a class="ajax-link"><i class="icon-remove"></i><span class="hidden-tablet"> Dar de baja</span></a>
-            <ul>
-                <li><a class="ajax-link" href="bajaUsuario.jsp">Usuario</a></li>
-                <li><a class="ajax-link" href="bajaElectro.jsp">Electrodomestico</a></li>
-              </ul>
-            </li>
+            
+           
           </ul>
         </div><!--/.well -->
       </div><!--/span-->
@@ -114,18 +93,17 @@ String usu= (String)session.getAttribute("usuario");
           </div>
           <div class="box-content">
             <p>
-            Bienvenido al Sistema Gestor de Electrodomesticos.
-            </p>
-            <h3>Novedades</h3><br>
+            Make the right decisions when purchasing appliances! 
+			</p>
+            <br>
             <div id="myCarousel" class="carousel slide">
   				<div class="carousel-inner">
-    				<div class="item active">
-    					<img src="" height="450" width="980">
-    				</div>
-    				<div class="item"><img src="" height="450" width="980"></div>
-   					 <div class="item"><img src="" height="450" width="980"></div>
-   					 <div class="item"><img src="" height="450" width="980"></div>
-   					 <div class="item"><img src="" height="450" width="980"></div>
+    				<div class="item active" align="center"><h3> UTN - FRRO </h3>	</div>
+    				<div class="item" align="center"><h3>Bienvenidos a SGE</h3></div>
+   					 <div class="item" align="center"><h3>Sistema de gestión de Electrodomésticos</h3></div>
+   					 <div class="item" align="center"><h3>Lenguaje de programación JAVA</h3></div>
+   					 <div class="item" align="center"><h3>Universidad Tecnologica Nacional</h3></div>
+   					 <div class="item" align="center"><h3>Arrighi Dante - Lopez Jordan Martin</h3></div>
   				</div>
   <!-- Carousel nav -->
   				<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
