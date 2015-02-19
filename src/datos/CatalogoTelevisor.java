@@ -41,7 +41,7 @@ public class CatalogoTelevisor {
 	}
 	public void DeleteTelev(int pIdElec)
 	{
-		String SQLCons= "DELETE FROM Electrodomesticos where ?=id_electro";
+		String SQLCons= "DELETE FROM Electrodomestico where ?=id_electro";
 		try {
 			ConexionBD conecta = new ConexionBD();
 			conecta.OpenConection();
